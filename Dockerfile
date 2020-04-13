@@ -8,9 +8,11 @@ RUN rpm -Uvh http://repo.webtatic.com/yum/el6/latest.rpm
 RUN yum install -y bc zlib-devel atlas-devel bzip2-devel gcc-c++ ffmpeg ffmpeg-devel make pkgconfig \
                    gtk2-devel perl cmake cmake3 git libcurl-devel.x86_64 unzip wget \
                    protobuf-devel lapack-devel leveldb-devel snappy-devel opencv-devel hdf5-devel \
-		   libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev \
-                   boost-devel lmdb-devel openblas-devel centos-release-scl devtoolset-7
+		   libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel \
+                   libdc1394-devel libv4l-devel gstreamer-plugins-base-devel \
+		   boost-devel lmdb-devel openblas-devel centos-release-scl devtoolset-7
 
+RUN yum groupinstall -y 'Development Tools'
 WORKDIR /install
 RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
 RUN bash Miniconda2-latest-Linux-x86_64.sh -b -p /install/miniconda
@@ -21,18 +23,33 @@ ENV PATH /install/miniconda/bin:${PATH}
 RUN conda install numpy PyYAML
 
 WORKDIR /install
-RUN wget https://github.com/Itseez/opencv/archive/3.1.0.zip
+RUN wget https://github.com/opencv/opencv/archive/3.1.0.zip
 RUN unzip 3.1.0.zip
+#RUN wget -O opencv_contrib.zip https://github.com/opencv/opencv_contrib/archive/3.1.0.zip
+#RUN unzip opencv_contrib.zip
 WORKDIR /install/opencv-3.1.0
 RUN mkdir build
 WORKDIR /install/opencv-3.1.0/build
+#          -DOPENCV_EXTRA_MODULES_PATH:PATH=../../opencv_contrib-3.1.0/modules \
 RUN cmake -DCMAKE_BUILD_TYPE=Release \
+	  -DBUILD_PYTHON_SUPPORT:BOOL=ON \
+	  -DBUILD_EXAMPLES:BOOL=ON \
+	  -DPYTHON_DEFAULT_EXECUTABLE:PATH=/install/miniconda/bin/python \
+	  -DPYTHON_INCLUDE_DIRS:PATH=/install/miniconda/include \
+	  -DPYTHON_EXECUTABLE:PATH=/install/miniconda/bin/python \
+	  -DPYTHON_LIBRARY:PATH=/install/miniconda/lib/libpython2.7.so.1.0 \
+	  -DBUILD_opencv_python3:BOOL=OFF \
+	  -DBUILD_opencv_python2:BOOL=ON \
+	  -DWITH_IPP:BOOL=OFF \
+	  -DWITH_FFMPEG:BOOL=ON \
+	  -DWITH_V4L:BOOL=ON .. \
+    	  -DOPENCV_BUILD_3RDPARTY_LIBS:BOOL=ON \
           -DBUILD_PNG:BOOL=ON \
 	  -DWITH_PNG:BOOL=ON \
 	  -DBUILD_JPEG:BOOL=ON \
 	  -DWITH_JPEG:BOOL=ON \
 	  -DBUILD_TIFF=ON \
-	  -DWITH-TIFF=ON \
+	  -DWITH_TIFF=ON \
 	  -DINSTALL_PYTHON_EXAMPLES:BOOL=ON \
 	  -DOPENCV_GENERATE_PKGCONFIG:BOOL=ON \
 	  -DCMAKE_INSTALL_PREFIX:PATH=/install/cv310 ..
