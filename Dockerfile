@@ -10,7 +10,7 @@ RUN yum install -y bc zlib-devel atlas-devel bzip2-devel gcc-c++ ffmpeg ffmpeg-d
                    protobuf-devel lapack-devel leveldb-devel snappy-devel opencv-devel hdf5-devel \
 		   libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel \
                    libdc1394-devel libv4l-devel gstreamer-plugins-base-devel \
-		   lmdb-devel openblas-devel centos-release-scl devtoolset-7
+		   boost-devel lmdb-devel openblas-devel centos-release-scl devtoolset-7
 
 RUN yum groupinstall -y 'Development Tools'
 WORKDIR /install
