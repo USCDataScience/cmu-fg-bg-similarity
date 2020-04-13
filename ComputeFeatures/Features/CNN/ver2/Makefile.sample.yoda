@@ -1,0 +1,33 @@
+# Set the following:
+#CAFFE_INSTALL_DIR = /IUS/homes4/rohytg/software/caffe_install
+CAFFE_ROOT := ../external/caffe
+CAFFE_ROOT := /home/rgirdhar/Work/Projects/006_Affordance/001_ObjDet/fast-rcnn/caffe-fast-rcnn
+CUDA_ROOT := /usr/local/cuda-6.5
+#INC += -I$(CAFFE_INSTALL_DIR)/gflags_install/include -I$(CAFFE_INSTALL_DIR)/glog_install/include -I$(CAFFE_INSTALL_DIR)/mdb_install/include -I ~/software/boost/include
+#LIBS += -L$(CAFFE_INSTALL_DIR)/gflags_install/lib -L$(CAFFE_INSTALL_DIR)/glog_install/lib -L$(CAFFE_INSTALL_DIR)/mdb_install/lib -L ~/software/boost/libs
+CPU_ONLY := 0
+
+CXXFLAGS += -std=c++0x -fopenmp -O2 -g
+LIBS += -L$(CAFFE_ROOT)/build/lib -L /vol1/home/ashrivas/cv-libs/lib/ -L/usr/local/lib/ -L/srv2/rgirdhar/Software/cpp/zeromq/install/lib/ -L/home/rgirdhar/Software/utils/boost/lib/ 
+LDFLAGS += -lcaffe -lglog -lboost_program_options -lboost_filesystem -lboost_system -lboost_serialization -llmdb -l:libhdf5.so.8 -lzmq -lopencv_core -lopencv_imgproc -lopencv_highgui -lopencv_ml -lopencv_video -lopencv_features2d -lopencv_calib3d -lopencv_objdetect -lopencv_contrib -lopencv_legacy -lopencv_flann
+INC += -I$(CAFFE_ROOT)/include/ -I$(CAFFE_ROOT)/build/src/ -I../ -I/home/rgirdhar/Software/utils/libzmq/cppzmq/ -I /srv2/rgirdhar/Software/cpp/zeromq/install/include/ -I/home/rgirdhar/Software/utils/boost/include -I/home/rgirdhar/Software/vision/opencv/install/include/opencv
+ifneq ($(CPU_ONLY),1)
+    LIBS += -L$(CUDA_ROOT)/lib64
+    INC += -I$(CUDA_ROOT)/include
+    LDFLAGS += -lcudart -lcublas -lcurand
+else
+	CPPFLAGS += -DCPU_ONLY
+endif
+
+all: $(patsubst %.cpp, %.bin, $(wildcard *.cpp))
+
+%.bin: %.cpp Makefile utils.hpp ../external/DiskVector/DiskVectorLMDB.hpp Config.hpp
+	$(CXX)  \
+		$(CXXFLAGS) \
+    $(INC) \
+		$< -o $@ \
+		$(LIBS) \
+		$(LDFLAGS) 
+
+clean:
+	rm -rf *.bin
