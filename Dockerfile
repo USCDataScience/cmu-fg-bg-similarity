@@ -26,7 +26,16 @@ RUN unzip 3.1.0.zip
 WORKDIR /install/opencv-3.1.0
 RUN mkdir build
 WORKDIR /install/opencv-3.1.0/build
-RUN cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_PNG=ON -D BUILD_JPEG=ON -D BUILD_TIFF=ON -D CMAKE_INSTALL_PREFIX=/install/cv310 ..
+RUN cmake -DCMAKE_BUILD_TYPE=Release \
+          -DBUILD_PNG:BOOL=ON \
+	  -DWITH_PNG:BOOL=ON \
+	  -DBUILD_JPEG:BOOL=ON \
+	  -DWITH_JPEG:BOOL=ON \
+	  -DBUILD_TIFF=ON \
+	  -DWITH-TIFF=ON \
+	  -DINSTALL_PYTHON_EXAMPLES:BOOL=ON \
+	  -DOPENCV_GENERATE_PKGCONFIG:BOOL=ON \
+	  -DCMAKE_INSTALL_PREFIX:PATH=/install/cv310 ..
 RUN make -j7 && make install
 
 WORKDIR /install
@@ -81,10 +90,11 @@ RUN mkdir /caffe /caffe/models /caffe/build \
 # - Fetching data and model files
 RUN /caffe/source/data/ilsvrc12/get_ilsvrc_aux.sh \
  && /caffe/source/scripts/download_model_binary.py /caffe/source/models/bvlc_alexnet \
+ && /caffe/source/scripts/download_model_binary.py /caffe/source/models/bvlc_reference_caffenet \
  && mv /caffe/source/data/ilsvrc12/imagenet_mean.binaryproto /caffe/models/ \
  && mv /caffe/source/models/bvlc_alexnet/bvlc_alexnet.caffemodel /caffe/models/ \
  && mv /caffe/source/models/bvlc_alexnet/deploy.prototxt /caffe/models/ \
- && mv /caffe/source/models/bvlc_reference_caffenet.caffemodel /caffe/models
+ && mv /caffe/source/models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel /caffe/models/
 
 # - Build, linking to deps
 RUN cd /caffe/build \
