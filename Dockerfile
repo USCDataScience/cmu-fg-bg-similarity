@@ -10,7 +10,7 @@ RUN yum install -y bc zlib-devel atlas-devel bzip2-devel gcc-c++ ffmpeg ffmpeg-d
                    protobuf-devel lapack-devel leveldb-devel snappy-devel opencv-devel hdf5-devel \
 		   libpng-devel libjpeg-turbo-devel jasper-devel openexr-devel libtiff-devel libwebp-devel \
                    libdc1394-devel libv4l-devel gstreamer-plugins-base-devel \
-		   boost-devel lmdb-devel openblas-devel centos-release-scl devtoolset-7
+		   lmdb-devel openblas-devel centos-release-scl devtoolset-7
 
 RUN yum groupinstall -y 'Development Tools'
 WORKDIR /install
@@ -21,6 +21,14 @@ RUN echo "export PATH=/install/miniconda/bin:$PATH" >> ~/.bashrc && \
 
 ENV PATH /install/miniconda/bin:${PATH}
 RUN conda install numpy PyYAML
+
+WORKDIR /install
+RUN wget http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.gz
+RUN tar -xzvf boost_1_57_0.tar.gz
+WORKDIR /install/boost_1_57_0
+RUN /install/boost_1_57_0/bootstrap.sh --prefix=/install/boost157
+RUN /install/boost_1_57_0/b2 install
+
 
 WORKDIR /install
 RUN wget https://github.com/opencv/opencv/archive/3.1.0.zip
@@ -54,13 +62,6 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release \
 	  -DOPENCV_GENERATE_PKGCONFIG:BOOL=ON \
 	  -DCMAKE_INSTALL_PREFIX:PATH=/install/cv310 ..
 RUN make -j7 && make install
-
-WORKDIR /install
-RUN wget http://sourceforge.net/projects/boost/files/boost/1.57.0/boost_1_57_0.tar.gz
-RUN tar -xzvf boost_1_57_0.tar.gz
-WORKDIR /install/boost_1_57_0
-RUN /install/boost_1_57_0/bootstrap.sh --prefix=/install/boost157
-RUN /install/boost_1_57_0/b2 install
 
 WORKDIR /install
 RUN wget https://archive.org/download/zeromq_4.1.0/zeromq-4.1.0-rc1.tar.gz
