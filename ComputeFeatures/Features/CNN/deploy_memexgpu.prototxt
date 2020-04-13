@@ -13,7 +13,7 @@ layers {
   transform_param {
     crop_size: 227
     mirror: false
-    mean_file: "/root/cmu/caffe-data/imagenet_mean.binaryproto"
+    mean_file: "/caffe/models/imagenet_mean.binaryproto"
   }
 }
 layers {

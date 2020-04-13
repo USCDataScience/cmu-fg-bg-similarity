@@ -8,6 +8,7 @@ RUN rpm -Uvh http://repo.webtatic.com/yum/el6/latest.rpm
 RUN yum install -y bc zlib-devel atlas-devel bzip2-devel gcc-c++ ffmpeg ffmpeg-devel make pkgconfig \
                    gtk2-devel perl cmake cmake3 git libcurl-devel.x86_64 unzip wget \
                    protobuf-devel lapack-devel leveldb-devel snappy-devel opencv-devel hdf5-devel \
+		   libjpeg-dev libpng-dev libtiff-dev libjasper-dev libdc1394-22-dev \
                    boost-devel lmdb-devel openblas-devel centos-release-scl devtoolset-7
 
 WORKDIR /install
@@ -25,7 +26,7 @@ RUN unzip 3.1.0.zip
 WORKDIR /install/opencv-3.1.0
 RUN mkdir build
 WORKDIR /install/opencv-3.1.0/build
-RUN cmake -D CMAKE_BUILD_TYPE=Release -D CMAKE_INSTALL_PREFIX=/install/cv310 ..
+RUN cmake -D CMAKE_BUILD_TYPE=Release -D BUILD_PNG=ON -D BUILD_JPEG=ON -D BUILD_TIFF=ON -D CMAKE_INSTALL_PREFIX=/install/cv310 ..
 RUN make -j7 && make install
 
 WORKDIR /install
@@ -82,7 +83,8 @@ RUN /caffe/source/data/ilsvrc12/get_ilsvrc_aux.sh \
  && /caffe/source/scripts/download_model_binary.py /caffe/source/models/bvlc_alexnet \
  && mv /caffe/source/data/ilsvrc12/imagenet_mean.binaryproto /caffe/models/ \
  && mv /caffe/source/models/bvlc_alexnet/bvlc_alexnet.caffemodel /caffe/models/ \
- && mv /caffe/source/models/bvlc_alexnet/deploy.prototxt /caffe/models/
+ && mv /caffe/source/models/bvlc_alexnet/deploy.prototxt /caffe/models/ \
+ && mv /caffe/source/models/bvlc_reference_caffenet.caffemodel /caffe/models
 
 # - Build, linking to deps
 RUN cd /caffe/build \
@@ -103,3 +105,10 @@ RUN cd /caffe/build \
  && rm -r /caffe/source /caffe/build
 ENV PATH="/caffe/install/bin:${PATH}" \
     PYTHONPATH="/caffe/install/python:${PYTHONPATH}"
+
+# Install CMU FG/BG software
+WORKDIR /install
+RUN git clone http://github.com/USCDataScience/cmu-fg-bg-similarity.git
+WORKDIR /install/cmu-fg-bg-similarity/ComputeFeatures/Features/CNN/ver2/
+RUN make
+ENV LD_LIBRARY_PATH /caffe/install/lib:/usr/local/lib:/install/boost157/lib:/install/cv310/lib:/install/zeromq410/lib:
