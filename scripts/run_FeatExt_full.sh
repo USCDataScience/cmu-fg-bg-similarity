@@ -1,6 +1,7 @@
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/caffe/install/lib/
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/install/zeromq410/lib
 CODE_PATH=/install/cmu-fg-bg-similarity/ComputeFeatures/Features/CNN/ver2
+mkdir -p /install/cmu-fg-bg-similarity/pool5
 GLOG_logtostderr=0 ${CODE_PATH}/computeFeatures.bin \
     -i /ctceu \
     -q ${CODE_PATH}/fileList.txt \
