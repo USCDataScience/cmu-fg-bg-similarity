@@ -136,7 +136,8 @@ ENV PATH="/caffe/install/bin:${PATH}" \
 
 # Install CMU FG/BG software
 WORKDIR /install
-RUN git clone http://github.com/USCDataScience/cmu-fg-bg-similarity.git
+#RUN git clone http://github.com/USCDataScience/cmu-fg-bg-similarity.git
+COPY ./ /install/cmu-fg-bg-similarity/
 WORKDIR /install/cmu-fg-bg-similarity/ComputeFeatures/Features/CNN/ver2/
 RUN make
 ENV LD_LIBRARY_PATH /caffe/install/lib:/usr/local/lib:/install/boost157/lib:/install/cv310/lib:/install/zeromq410/lib:
