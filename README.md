@@ -35,3 +35,4 @@ are implemented according to the following papers respectively:
  1. `/install/cmu-fg-bg-similarity/scripts/clean-paths.sh`
  2. `/install/cmu-fg-bg-similarity/scripts/gen-file-list.sh`
  3. `cd /install/cmu-fg-bg-similarity/scripts/ && ./run_FeatExt_full.sh`
+ 4. `cd /install/cmu-fg-bg-similarity/scripts/ && ./buildIndex_ITQ.sh`
