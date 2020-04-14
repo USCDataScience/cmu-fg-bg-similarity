@@ -29,7 +29,6 @@ WORKDIR /install/boost_1_57_0
 RUN /install/boost_1_57_0/bootstrap.sh --prefix=/install/boost157
 RUN /install/boost_1_57_0/b2 install
 
-
 WORKDIR /install
 RUN wget https://github.com/opencv/opencv/archive/3.1.0.zip
 RUN unzip 3.1.0.zip
@@ -136,7 +135,6 @@ ENV PATH="/caffe/install/bin:${PATH}" \
 
 # Install CMU FG/BG software
 WORKDIR /install
-#RUN git clone http://github.com/USCDataScience/cmu-fg-bg-similarity.git
 COPY ./ /install/cmu-fg-bg-similarity/
 WORKDIR /install/cmu-fg-bg-similarity/ComputeFeatures/Features/CNN/ver2/
 RUN make
