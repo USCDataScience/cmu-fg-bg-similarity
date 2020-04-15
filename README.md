@@ -36,3 +36,4 @@ are implemented according to the following papers respectively:
  2. `/install/cmu-fg-bg-similarity/scripts/gen-file-list.sh`
  3. `cd /install/cmu-fg-bg-similarity/scripts/ && ./run_FeatExt_full.sh`
  4. `cd /install/cmu-fg-bg-similarity/scripts/ && ./buildIndex_ITQ.sh`
+ 5. `cd /install/cmu-fg-bg-similarity/scripts  && ./run_server_ITQ.sh`
