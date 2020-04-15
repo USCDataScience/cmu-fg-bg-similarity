@@ -138,4 +138,10 @@ WORKDIR /install
 COPY ./ /install/cmu-fg-bg-similarity/
 WORKDIR /install/cmu-fg-bg-similarity/ComputeFeatures/Features/CNN/ver2/
 RUN make
+WORKDIR /install/cmu-fg-bg-similarity/ScalableLSH/DiskE2LSH/
+RUN make
+WORKDIR /install/cmu-fg-bg-similarity/ScalableLSH/Deploy/
+RUN make
+WORKDIR /install
+RUN pip install pyzmq happybase
 ENV LD_LIBRARY_PATH /caffe/install/lib:/usr/local/lib:/install/boost157/lib:/install/cv310/lib:/install/zeromq410/lib:
