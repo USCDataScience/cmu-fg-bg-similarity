@@ -1,3 +1,4 @@
+mkdir -p /install/cmu-fg-bg-similarity/logs
 BASE_PATH=/install/cmu-fg-bg-similarity/ComputeFeatures/Features/CNN/
 CODE_PATH=/install/cmu-fg-bg-similarity/ScalableLSH/Deploy/
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/caffe/install/lib
