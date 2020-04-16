@@ -77,6 +77,7 @@ Send them to [Chris A. Mattmann](mailto:chris.a.mattmann@jpl.nasa.gov).
 * Chris A. Mattmann, USC & JPL
 * Tom Barber, JPL
 * Rohit Girdrar, CMU
+* Xiaofan Wang, CMU
 * Karanjeet Singh, USC & JPL
 
 # License
