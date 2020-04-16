@@ -45,7 +45,7 @@ are implemented according to the following papers respectively:
 
  Which should output something like:
 
- {{{
+ ```
    [
     [
         "http://localhost:8000/MyPic.png",
@@ -61,7 +61,7 @@ are implemented according to the following papers respectively:
     ],
   ]
 
-  }}}
+  ```
 
   Which is a list of image URLs along with the similarity to the provided image, `MyPic.png`.
 
