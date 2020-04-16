@@ -36,5 +36,48 @@ are implemented according to the following papers respectively:
  2. `/install/cmu-fg-bg-similarity/scripts/gen-file-list.sh`
  3. `cd /install/cmu-fg-bg-similarity/scripts/ && ./run_FeatExt_full.sh`
  4. `cd /install/cmu-fg-bg-similarity/scripts/ && ./buildIndex_ITQ.sh`
- 5. `cd /install/cmu-fg-bg-similarity/scripts  && ./run_server_ITQ.sh`
+ 5. `cd /install/cmu-fg-bg-similarity/scripts  && ./run_server_ITQ.sh > /install/cmu-fg-bg-similarity/logs/itq-server.log 2>&1&`
  6. `cd /install/cmu-fg-bg-similarity/scripts && ./web_services.sh`
+
+#### Testing a file's similarity with the rest of the corpus
+
+ 1. `cd /install/cmu-fg-bg-similarity/scripts && ./file_similarity.sh MyPic.png`
+
+ Which should output something like:
+
+ {{{
+   [
+    [
+        "http://localhost:8000/MyPic.png",
+        1.0
+    ],
+    [
+        "http://localhost:8000/MyPic2.png",
+        0.422732
+    ],
+    [
+        "http://localhost:8000/MyPic.jpg",
+        0.349333
+    ],
+  ]
+
+  }}}
+
+  Which is a list of image URLs along with the similarity to the provided image, `MyPic.png`.
+
+
+#### Log file Directory
+
+Log files are written to `/install/cmu-fg-bg-similarity/logs`.
+
+# Questions, comments?
+Send them to [Chris A. Mattmann](mailto:chris.a.mattmann@jpl.nasa.gov).
+
+# Contributors
+* Chris A. Mattmann, USC & JPL
+* Tom Barber, JPL
+* Rohit Girdrar, CMU
+* Karanjeet Singh, USC & JPL
+
+# License
+[Apache License, version 2](http://www.apache.org/licenses/LICENSE-2.0)
