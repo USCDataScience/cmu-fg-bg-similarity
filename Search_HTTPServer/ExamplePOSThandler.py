@@ -3,11 +3,16 @@ import json
 import happybase
 import urlparse
 
-BASE_URL = 'http://localhost:8000/'
 
 class a_POST_handler:
-  def __init__(self,a_service_port):
+  def __init__(self,a_service_port,type='full'):
     self.service_port=a_service_port
+    if type == 'full':
+        self.BASE_URL = 'http://localhost:8000/'
+    elif type=='fg':
+	self.BASE_URL = 'http://localhost:8001/'
+    else:
+	self.BASE_URL = 'http://localhost:8000/'
 
   def __del__(self):
     self.conn.close()
@@ -64,7 +69,7 @@ class a_POST_handler:
     return json.dumps(matches)
 
   def getS3URL(self, imid):
-    return urlparse.urljoin(BASE_URL, imid)
+    return urlparse.urljoin(self.BASE_URL, imid)
 
   def fix_commas(self, matches_list):
     matches = []
