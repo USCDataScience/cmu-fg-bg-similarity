@@ -144,4 +144,8 @@ WORKDIR /install/cmu-fg-bg-similarity/ScalableLSH/Deploy/
 RUN make
 WORKDIR /install
 RUN pip install pyzmq happybase
+WORKDIR /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation
+RUN make all
+WORKDIR /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts
+RUN sh get_seg_loc_models.sh
 ENV LD_LIBRARY_PATH /caffe/install/lib:/usr/local/lib:/install/boost157/lib:/install/cv310/lib:/install/zeromq410/lib:
