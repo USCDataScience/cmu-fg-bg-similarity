@@ -14,4 +14,5 @@ GLOG_logtostderr=1 ${CODE_PATH}/computeFeatAndSearch.bin \
     --port-num 5568 \
     --num-output 100 \
     --nRerank 1000\
-    -f 1
+    -f 1   > /install/cmu-fg-bg-similarity/logs/itq-server.log 2>&1&
+
