@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEPLOY_HOME=/install/cmu-fg-bg-similarity/
+DEPLOY_HOME=/install/cmu-fg-bg-similarity
 SCRIPTS_HOME=$DEPLOY_HOME/scripts
 SEGMENTATION_HOME=$DEPLOY_HOME/segmentation/Caffe_Segmentation/
 
@@ -25,11 +25,11 @@ pushd $SCRIPTS_HOME
 ./run_server_ITQ.sh
 popd
 
-pushd $SEGMENTATION_HOME/data
+pushd $SEGMENTATION_HOME/segscripts/data
 ./gen-segmentation-input.sh
 popd
 
-pushd $SEGMENTATION_HOME/scripts
+pushd $SEGMENTATION_HOME/segscripts/
 ./run_seg.sh ..
 popd
 
