@@ -1,5 +1,5 @@
 FILE_LIST=/install/cmu-fg-bg-similarity/ComputeFeatures/Features/CNN/ver2/fileList.txt
-ln -s /ctceu /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts/data/corpus
+ln -s /images /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts/data/corpus
 
 rm -rf ./ImgsList.txt
 rm -rf ./ImgsList_IDL_input.txt

@@ -149,3 +149,9 @@ RUN make all
 WORKDIR /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts
 RUN sh get_seg_loc_models.sh
 ENV LD_LIBRARY_PATH /caffe/install/lib:/usr/local/lib:/install/boost157/lib:/install/cv310/lib:/install/zeromq410/lib:
+
+EXPOSE 8000
+EXPOSE 8001
+EXPOSE 8888
+
+ENTRYPOINT ["/install/cmu-fg-bg-similarity/entrypoint_cmu-imgsim.sh"]

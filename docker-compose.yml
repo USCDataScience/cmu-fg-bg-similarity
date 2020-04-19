@@ -26,7 +26,7 @@ services:
       - "8001"
       - "8888"
     volumes:
-      - ${IMAGE_PATH}:/ctceu
+      - ${IMAGE_PATH}:/images
 
 networks:
   imagespace-network:

@@ -34,7 +34,7 @@ Proc. of Advances in Neural Information Processing Systems (NIPS), 2014
 ### In a separate window, Outside of the Docker
 
  1. once built, run it, get a container ID, `CID`
- 2. Copy images to `/ctceu` on the docker (e.g., from your local), `docker cp /some/path/to/imgs/local CID:/ctceu`
+ 2. Copy images to `/images` on the docker (e.g., from your local), `docker cp /some/path/to/imgs/local CID:/images`
  3. `docker exec -it cmu-img-sim sh`
 
 ### Inside of the Docker
