@@ -16,7 +16,7 @@
 version: "2"
 services:
   imagespace-cmuimgsim:
-    image: nasajplmemex/cmu-fg-bg-similarity
+    image: uscdatascience/cmu-fg-bg-similarity
     networks:
       - imagespace-network
     entrypoint:
