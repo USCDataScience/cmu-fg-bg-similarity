@@ -1,8 +1,8 @@
 #!/bin/bash
 
-$DEPLOY_HOME=/install/cmu-fg-bg-similarity/
-$SCRIPTS_HOME=$DEPLOY_HOME/scripts
-$SEGMENTATION_HOME=$DEPLOY_HOME/segmentation/Caffe_Segmentation/
+DEPLOY_HOME=/install/cmu-fg-bg-similarity/
+SCRIPTS_HOME=$DEPLOY_HOME/scripts
+SEGMENTATION_HOME=$DEPLOY_HOME/segmentation/Caffe_Segmentation/
 
 
 echo "Docker Container ID:" $HOSTNAME
