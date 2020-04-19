@@ -72,7 +72,7 @@ are implemented according to the following papers respectively:
 
 #### Testing a file's foreground similarity with the rest of the corpus
 
- 1. 1. `cd /install/cmu-fg-bg-similarity/scripts && ./file_similarity_fg.sh MyPic.png`
+ 1. 1. `cd /install/cmu-fg-bg-similarity/scripts && ./file_similarity-fg.sh MyPic.png`
 
  You will see similar JSON output akin to the above.
 
