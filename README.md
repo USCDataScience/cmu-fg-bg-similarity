@@ -25,11 +25,11 @@ Proc. of Advances in Neural Information Processing Systems (NIPS), 2014
 
 ## Build the Docker
 
- 1. `docker build -t cmu-img-sim:latest -f Dockerfile .`
+ 1. `docker build -t uscdatascience/cmu-fg-bg-similarity -f Dockerfile .`
 
 ## Run the Docker
 
-  1. `docker run -it cmu-img-sim /bin/sh`
+  1. `docker run -it uscdatascience/cmu-fg-bg-similarity /bin/sh`
 
 ### In a separate window, Outside of the Docker
 
@@ -39,17 +39,7 @@ Proc. of Advances in Neural Information Processing Systems (NIPS), 2014
 
 ### Inside of the Docker
 
- 1. `/install/cmu-fg-bg-similarity/scripts/clean-paths.sh`
- 2. `/install/cmu-fg-bg-similarity/scripts/gen-file-list.sh`
- 3. `cd /install/cmu-fg-bg-similarity/scripts/ && ./run_FeatExt_full.sh`
- 4. `cd /install/cmu-fg-bg-similarity/scripts/ && ./buildIndex_ITQ.sh`
- 5. `cd /install/cmu-fg-bg-similarity/scripts  && ./run_server_ITQ.sh`
- 6. `cd /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts/data && ./gen-segmentation-input.sh`
- 7. `cd	/install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts && ./run_seg.sh ..`
- 8. `cd /install/cmu-fg-bg-similarity/scripts/ && ./run_FeatExt_fg.sh`
- 9. `cd /install/cmu-fg-bg-similarity/scripts/ && ./buildIndex_fg_ITQ.sh`
- 10. `cd /install/cmu-fg-bg-similarity/scripts  && ./run_server_fg_ITQ.sh`
- 11. `cd /install/cmu-fg-bg-similarity/scripts && ./web_services.sh`
+ 1. `/install/cmu-fg-bg-similarity/entrypoint_cmu-imgsim.sh`
 
 #### Testing a file's similarity with the rest of the corpus
 
