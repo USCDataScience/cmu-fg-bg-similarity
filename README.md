@@ -37,7 +37,7 @@ are implemented according to the following papers respectively:
  3. `cd /install/cmu-fg-bg-similarity/scripts/ && ./run_FeatExt_full.sh`
  4. `cd /install/cmu-fg-bg-similarity/scripts/ && ./buildIndex_ITQ.sh`
  5. `cd /install/cmu-fg-bg-similarity/scripts  && ./run_server_ITQ.sh`
- 6. `cd /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts/data/gen-segmentation-input.sh`
+ 6. `cd /install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts/data && ./gen-segmentation-input.sh`
  7. `cd	/install/cmu-fg-bg-similarity/segmentation/Caffe_Segmentation/segscripts && ./run_seg.sh`
  8. `cd /install/cmu-fg-bg-similarity/scripts/ && ./run_FeatExt_fg.sh`
  9. `cd /install/cmu-fg-bg-similarity/scripts/ && ./buildIndex_fg_ITQ.sh`
