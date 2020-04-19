@@ -39,7 +39,7 @@ Proc. of Advances in Neural Information Processing Systems (NIPS), 2014
 
 ### Inside of the Docker
 
- 1. `/install/cmu-fg-bg-similarity/entrypoint_cmu-imgsim.sh`
+ 1. [/install/cmu-fg-bg-similarity/entrypoint_cmu-imgsim.sh](./entrypoint_cmu-imgsim.sh)
 
 #### Testing a file's similarity with the rest of the corpus
 
