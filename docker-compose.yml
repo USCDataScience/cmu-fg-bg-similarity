@@ -20,7 +20,7 @@ services:
     networks:
       - imagespace-network
     entrypoint:
-      - /deploy/entrypoint_entrypoint_cmu-imgsim.sh
+      - /install/cmu-fg-bg-similarity/entrypoint_cmu-imgsim.sh
     ports:
       - "8000"
       - "8001"
