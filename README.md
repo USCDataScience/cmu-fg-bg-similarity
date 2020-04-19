@@ -14,6 +14,13 @@ are implemented according to the following papers respectively:
 * [CVPR11' Small Code](http://slazebni.cs.illinois.edu/publications/cvpr11_small_code.pdf)
 * [LSH paper](http://www.mit.edu/~andoni/LSH/)
 
+Additionally the segmentation code is based on the 
+[work of Xiaolong Wang](https://github.com/xiaolonw/nips14_loc_seg_testonly/tree/master/Caffe_Segmentation) 
+and the following paper:
+
+* [Deep Joint Task Learning for Generic Object Extraction](https://papers.nips.cc/paper/5547-deep-joint-task-learning-for-generic-object-extraction). 
+Proc. of Advances in Neural Information Processing Systems (NIPS), 2014
+
 # Quick Instructions
 
 ## Build the Docker
