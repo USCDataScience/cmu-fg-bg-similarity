@@ -22,9 +22,9 @@ services:
     entrypoint:
       - /install/cmu-fg-bg-similarity/entrypoint_cmu-imgsim.sh
     ports:
-      - "8000"
-      - "8001"
-      - "8888"
+      - "8000:8000"
+      - "8001:8001"
+      - "8889:8888"
     volumes:
       - ${IMAGE_PATH}:/images
 
